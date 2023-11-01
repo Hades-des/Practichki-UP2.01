@@ -1,0 +1,52 @@
+import tkinter as tk
+
+def add_shape_window():
+    add_window = tk.Toplevel(main_window)
+    add_window.title("Добавить фигуру")
+    x_label = tk.Label(add_window, text="X координата:")
+    x_label.pack()
+    x_entry = tk.Entry(add_window)
+    x_entry.pack()
+    y_label = tk.Label(add_window, text="Y координата:")
+    y_label.pack()
+    y_entry = tk.Entry(add_window)
+    y_entry.pack()
+    width_label = tk.Label(add_window, text="Ширина:")
+    width_label.pack()
+    width_entry = tk.Entry(add_window)
+    width_entry.pack()
+    height_label = tk.Label(add_window, text="Высота:")
+    height_label.pack()
+    height_entry = tk.Entry(add_window)
+    height_entry.pack()
+    shape_type = tk.StringVar()
+    shape_type.set("Прямоугольник")
+    shape_label = tk.Label(add_window, text="Выберите фигуру:")
+    shape_label.pack()
+    rectangle_radio = tk.Radiobutton(add_window, text="Прямоугольник", variable=shape_type, value="Прямоугольник")
+    rectangle_radio.pack()
+    oval_radio = tk.Radiobutton(add_window, text="Овал", variable=shape_type, value="Овал")
+    oval_radio.pack()
+    def add_shape():
+        x = int(x_entry.get())
+        y = int(y_entry.get())
+        width = int(width_entry.get())
+        height = int(height_entry.get())
+        shape = shape_type.get()
+
+        if shape == "Прямоугольник":
+            canvas.create_rectangle(x, y, x + width, y + height, fill="blue")
+        else:
+            canvas.create_oval(x, y, x + width, y + height, fill="red")
+
+        add_window.destroy()
+
+    draw_button = tk.Button(add_window, text="Нарисовать", command=add_shape)
+    draw_button.pack()
+main_window = tk.Tk()
+main_window.title("Рисование фигур")
+canvas = tk.Canvas(main_window, width=400, height=400)
+canvas.pack()
+add_button = tk.Button(main_window, text="Добавить фигуру", command=add_shape_window)
+add_button.pack()
+main_window.mainloop()
