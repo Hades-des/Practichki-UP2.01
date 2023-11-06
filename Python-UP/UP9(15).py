@@ -1,24 +1,27 @@
-class Student:
-    def __init__(self, name, scholarship):
-        self.name = name
-        self.scholarship = scholarship
+import re
 
-    def display_info(self):
-        if self.scholarship > 0:
-            print(f"{self.name} имеет стипендию в размере {self.scholarship} рублей.")
-        else:
-            print(f"{self.name} не получает стипендию.")
+with open("text.txt", "r", encoding="utf-8") as file:
+    text = file.read()
+
+emails = re.findall(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', text)
+phone_numbers = re.findall(r'\(\d{3}\) \d{3}-\d{4}', text)
+dates = re.findall(r'\d{2}/\d{2}/\d{4}', text)
+
+email_count = len(emails)
+phone_count = len(phone_numbers)
+date_count = len(dates)
 
 
-students = []
-while True:
-    name = input("Введите имя студента (или нажмите Enter для завершения): ")
-    if name == "":
-        break
-    scholarship = int(input("Введите размер стипендии: "))
-    student = Student(name, scholarship)
-    students.append(student)
+print("Email-адреса:", emails)
+print("Номера телефонов:", phone_numbers)
+print("Даты:", dates)
+print("Общее количество email-адресов:", email_count)
+print("Общее количество номеров телефонов:", phone_count)
+print("Общее количество дат:", date_count)
 
-# Выведем информацию о студентах
-for student in students:
-    student.display_info()
+with open("results.txt", "w", encoding="utf-8") as result_file:
+    result_file.write(f"Email-адреса: {emails}\n")
+    result_file.write(f"Номера телефонов: {phone_numbers}\n")
+    result_file.write(f"Даты: {dates}\n")
+
+print("Результаты записаны в results.txt.")
