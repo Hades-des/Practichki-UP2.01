@@ -33,7 +33,7 @@ def check_alarm():
     if alarm_hour is not None and alarm_minute is not None and current_hour == alarm_hour and current_minute == alarm_minute:
         play_alarm()
 def play_alarm():
-    pygame.mixer.music.load("alarm.mp3")
+    pygame.mixer.music.load("other/alarm.mp3")
     pygame.mixer.music.play()
     show_alarm_window()
 def show_alarm_window():

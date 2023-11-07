@@ -1,7 +1,7 @@
 import sqlite3
 
 
-conn = sqlite3.connect('empl.db')
+conn = sqlite3.connect('other/empl.db')
 cursor = conn.cursor()
 
 #Cотрудники/Зп(1)
@@ -224,8 +224,8 @@ cursor.execute('''
     INNER JOIN Склад ON Поставщики.id = Склад.id
     GROUP BY Поставщики.наименование
     ''')
+
 print("Задание 5:")
 print(cursor.fetchall())
-
 
 conn.close()

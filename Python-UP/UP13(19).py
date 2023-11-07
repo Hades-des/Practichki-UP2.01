@@ -2,14 +2,14 @@ import sqlite3
 import keyboard
 
 def show_data():
-    conn = sqlite3.connect('empl.db')
+    conn = sqlite3.connect('other/empl.db')
     cursor = conn.cursor()
     cursor.execute('SELECT full_name, id, position FROM employees')
     data = cursor.fetchall()
     for row in data:
         print(f'\nФИО: {row[0]}, ID: {row[1]}, Должность: {row[2]}')
 
-conn = sqlite3.connect('empl.db')
+conn = sqlite3.connect('other/empl.db')
 cursor = conn.cursor()
 
 cursor.execute('''
