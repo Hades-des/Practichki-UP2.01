@@ -1,2 +1,3 @@
-PI = 3.14159265359
-EULER = 2.718281828486
+import math
+PI = math.pi
+E = math.e
